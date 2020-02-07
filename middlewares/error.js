@@ -7,7 +7,7 @@ module.exports = (err, req, res, next) => {
 
   //Mongoose bad object id
   if (err.name === "CastError") {
-    const message = `Resource not found with id ${err.value}`;
+    const message = `Resource not found`;
     error = new ErrorResponse(message, 404);
   }
   //duplicate error

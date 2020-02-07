@@ -62,6 +62,10 @@ reviewSchema.post("save", async function() {
   await this.constructor.getAverageRating(this.bootcamp);
 });
 
+reviewSchema.post("findOneAndUpdate", async function(doc) {
+  await this.model.getAverageRating(doc.bootcamp);
+});
+
 //Call getAverageCost before remove save
 reviewSchema.pre("remove", async function() {
   await this.constructor.getAverageRating(this.bootcamp);

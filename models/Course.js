@@ -69,6 +69,10 @@ courseSchema.post("save", async function() {
   await this.constructor.getAverageCost(this.bootcamp);
 });
 
+courseSchema.post("findOneAndUpdate", async function(doc) {
+  await this.model.getAverageRating(doc.bootcamp);
+});
+
 //Call getAverageCost before remove save
 courseSchema.pre("remove", async function() {
   await this.constructor.getAverageCost(this.bootcamp);

@@ -9,6 +9,7 @@ const error = require("../middlewares/error");
 const fileUpload = require("express-fileupload");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+const mongoSanitize = require("express-mongo-sanitize");
 
 module.exports = app => {
   //dev logging middleware
@@ -18,6 +19,7 @@ module.exports = app => {
   app.use(express.json());
   app.use(cookieParser());
   app.use(fileUpload());
+  app.use(mongoSanitize());
   app.use(express.static(path.join(__dirname, "../public")));
   app.use("/api/v1/bootcamps", bootcampRoutes);
   app.use("/api/v1/courses", coursesRoutes);
