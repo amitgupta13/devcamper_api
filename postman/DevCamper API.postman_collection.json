@@ -1,0 +1,1323 @@
+{
+	"info": {
+		"_postman_id": "4ebba450-5669-4244-9344-d366f65d7dd6",
+		"name": "DevCamper API",
+		"description": "Backend api for dev camper application to manage bootcamps, courses, reviews, users and authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "bootcamps",
+			"item": [
+				{
+					"name": "Get all bootcamps",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTJlZDE2ZDY5MDg0NzFkNDFiNGJhMzMiLCJpYXQiOjE1ODAxODY4NzV9.8AlX0WMbRwla_dyvFA_cXicgg8Pwg2v11jylMVn3mVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"my new track\",\n\t\"locations\":[\n\t\t\t{\n\t\t\t\t\"timestamp\":100000000,\n\t\t\t\t\"coords\":{\n\t\t\t\t\t\"latitude\":100,\n\t\t\t\t\t\"longitude\":100,\n\t\t\t\t\t\"altitude\":100,\n\t\t\t\t\t\"accuracy\":100,\n\t\t\t\t\t\"heading\":100,\n\t\t\t\t\t\"speed\":100\n\t\t\t\t}\n\t\t\t}\n\t\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps"
+							]
+						},
+						"description": "fetch all bootcamps from database. Includes pagination, filtering etc"
+					},
+					"response": []
+				},
+				{
+					"name": "Get single bootcamp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"1"
+							]
+						},
+						"description": "Get single boootcamp by id"
+					},
+					"response": []
+				},
+				{
+					"name": "save bootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Codemasters Test\",\r\n\t\t\"description\": \"Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in full stack web development and data science\",\r\n\t\t\"website\": \"https://codemasters.com\",\r\n\t\t\"phone\": \"(333) 333-3333\",\r\n\t\t\"email\": \"enroll@codemasters.com\",\r\n\t\t\"address\": \"85 South Prospect Street Burlington VT 05405\",\r\n\t\t\"careers\": [\"Web Development\", \"Data Science\", \"Business\"],\r\n\t\t\"housing\": true,\r\n\t\t\"jobAssistance\": false,\r\n\t\t\"jobGuarantee\": false,\r\n\t\t\"acceptGi\": false}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps"
+							]
+						},
+						"description": "save bootcamp to database must be authenticated and must be publisher or admin"
+					},
+					"response": []
+				},
+				{
+					"name": "update bootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"1"
+							]
+						},
+						"description": "updates single bootcamp in database"
+					},
+					"response": []
+				},
+				{
+					"name": "delete bootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/5e3bda68e2e9b2473d82338f",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5e3bda68e2e9b2473d82338f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all bootcamps in a radius",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTJlZDE2ZDY5MDg0NzFkNDFiNGJhMzMiLCJpYXQiOjE1ODAxODY4NzV9.8AlX0WMbRwla_dyvFA_cXicgg8Pwg2v11jylMVn3mVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"my new track\",\n\t\"locations\":[\n\t\t\t{\n\t\t\t\t\"timestamp\":100000000,\n\t\t\t\t\"coords\":{\n\t\t\t\t\t\"latitude\":100,\n\t\t\t\t\t\"longitude\":100,\n\t\t\t\t\t\"altitude\":100,\n\t\t\t\t\t\"accuracy\":100,\n\t\t\t\t\t\"heading\":100,\n\t\t\t\t\t\"speed\":100\n\t\t\t\t}\n\t\t\t}\n\t\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/radius/02118/10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"radius",
+								"02118",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload photo for bootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/bootcamps/5d725a037b292f5f8ceff787/photo",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d725a037b292f5f8ceff787",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "bootcamps CRUD functionality",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "Get all courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all courses for a specific bootcamp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d725a1b7b292f5f8ceff788",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single courses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/courses/5d725a4a7b292f5f8ceff789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"5d725a4a7b292f5f8ceff789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create bootcamp course",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Front End Web Development\",\n\t\t\"description\": \"This course will provide you with all of the essentials to become a successful frontend web developer. You will learn to master HTML, CSS and front end JavaScript, along with tools like Git, VSCode and front end frameworks like Vue\",\n\t\t\"weeks\": 8,\n\t\t\"tuition\": 8000,\n\t\t\"minimumSkill\": \"beginner\",\n\t\t\"scholarhipsAvailable\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/bootcamps/5d725a037b292f5f8ceff787/courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d725a037b292f5f8ceff787",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update course",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"tuition\": 13000,\n\t\t\"minimumSkill\": \"advanced\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/courses/5d725c84c4ded7bcb480eaa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"5d725c84c4ded7bcb480eaa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete course",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"tuition\": 13000,\n\t\t\"minimumSkill\": \"advanced\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/courses/5d725c84c4ded7bcb480eaa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"courses",
+								"5d725c84c4ded7bcb480eaa0"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c45c68b2-0040-443a-9a59-79ebcd11580a",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Henry Cavil\",\n\t\"email\":\"abc2@abc.com\",\n\t\"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login a user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce1a8a0f-8d58-40e5-9cb5-4aaea5c4d9eb",
+								"exec": [
+									"pm.environment.set(\"TOKEN\", pm.response.json().token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"abc1@abc.com\",\n\t\"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get logged in user via token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Test bootcamp\",\r\n\t\t\"description\": \"Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in full stack web development and data science\",\r\n\t\t\"website\": \"https://codemasters.com\",\r\n\t\t\"phone\": \"(333) 333-3333\",\r\n\t\t\"email\": \"enroll@codemasters.com\",\r\n\t\t\"address\": \"85 South Prospect Street Burlington VT 05405\",\r\n\t\t\"careers\": [\"Web Development\", \"Data Science\", \"Business\"],\r\n\t\t\"housing\": true,\r\n\t\t\"jobAssistance\": false,\r\n\t\t\"jobGuarantee\": false,\r\n\t\t\"acceptGi\": false}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/me",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"email\": \"john@gmail.com\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/forgotpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"forgotpassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset user password using token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\":\"1234567\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/resetPassword/430e8b4be890227acaeb40b17e631057d5733f1c",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"resetPassword",
+								"430e8b4be890227acaeb40b17e631057d5733f1c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c45c68b2-0040-443a-9a59-79ebcd11580a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Henry Cavil\",\n\t\"email\":\"john@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/updatedetails",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"updatedetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c45c68b2-0040-443a-9a59-79ebcd11580a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"currentPassword\":\"1234567\",\n\t\"newPassword\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/updatepassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"updatepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout via cookie",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Test bootcamp\",\r\n\t\t\"description\": \"Is coding your passion? Codemasters will give you the skills and the tools to become the best developer possible. We specialize in full stack web development and data science\",\r\n\t\t\"website\": \"https://codemasters.com\",\r\n\t\t\"phone\": \"(333) 333-3333\",\r\n\t\t\"email\": \"enroll@codemasters.com\",\r\n\t\t\"address\": \"85 South Prospect Street Burlington VT 05405\",\r\n\t\t\"careers\": [\"Web Development\", \"Data Science\", \"Business\"],\r\n\t\t\"housing\": true,\r\n\t\t\"jobAssistance\": false,\r\n\t\t\"jobGuarantee\": false,\r\n\t\t\"acceptGi\": false}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/users/5c8a1d5b0190b214360dc034",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5c8a1d5b0190b214360dc034"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Nate Smith\",\n\t\"email\":\"nate@gmail.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Nate Dickens\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/5e3d11f3d915ed19596de250",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5e3d11f3d915ed19596de250"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Nate Dickens\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/users/5e3d11f3d915ed19596de250",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"5e3d11f3d915ed19596de250"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "reviews",
+			"item": [
+				{
+					"name": "Get all reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/reviews",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all reviews for a specific bootcamp",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d725a1b7b292f5f8ceff788",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get single review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/reviews/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add review for bootcamp",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"nice boot\",\n\t\"text\":\"waha wawa\",\n\t\"rating\":\"8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/bootcamps/5d725a1b7b292f5f8ceff788/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"bootcamps",
+								"5d725a1b7b292f5f8ceff788",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"abc\",\n\t\"rating\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/reviews/5e3d34f552dc9c1e8849656d",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"5e3d34f552dc9c1e8849656d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\":\"abc\",\n\t\"rating\":10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/reviews/5e3d34f552dc9c1e8849656d",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reviews",
+								"5e3d34f552dc9c1e8849656d"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
